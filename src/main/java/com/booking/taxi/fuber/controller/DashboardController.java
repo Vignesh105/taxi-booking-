@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.booking.taxi.fuber.entity.CabDetails;
+import com.booking.taxi.fuber.entity.CostDetails;
 import com.booking.taxi.fuber.entity.TravelDetails;
 import com.booking.taxi.fuber.service.CabDetailsService;
+import com.booking.taxi.fuber.service.CostlDetailsService;
 import com.booking.taxi.fuber.service.TravelDetailsService;
 
 @RestController
@@ -23,6 +25,10 @@ public class DashboardController {
 	
 	@Autowired
 	TravelDetailsService travelDetailsService;
+	
+	@Autowired
+	CostlDetailsService costDetailsService;
+
 	
 	@GetMapping("/cab/list")
 	public List<CabDetails> getCabList() {
@@ -38,5 +44,14 @@ public class DashboardController {
 	public List<TravelDetails> showTravelDetails(){
 		return travelDetailsService.fetchtravelDetails();		
 	}
+	
+	@PostMapping("/assign/starttime")
+	public void assignStartTime(@RequestBody CostDetails costDetails){
+		costDetailsService.addStartTime(costDetails);
+	}
 
+	@PostMapping("/assign/endtime")
+	public void assignEndTime(@RequestBody CostDetails costDetails){
+		costDetailsService.addEndTime(costDetails);
+	}
 }
