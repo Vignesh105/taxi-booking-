@@ -11,6 +11,8 @@ import com.booking.taxi.fuber.repository.CabDetailsRepository;
 @Service
 public class CabDetailsService {
 	
+	String color;
+	
 	@Autowired
 	CabDetailsRepository cabDetailsRepo;
 	
@@ -18,7 +20,8 @@ public class CabDetailsService {
 		return cabDetailsRepo.findAll();
 	}	
 
-	public List<CabDetails> assignCabToUser(CabDetails cabDetails) {		
+	public List<CabDetails> assignCabToUser(CabDetails cabDetails) {
+	    color = cabDetails.getColor();
 		cabDetails.setAvailable(false);	
 		cabDetailsRepo.save(cabDetails);		
 		return cabDetailsRepo.findAll();

@@ -54,4 +54,10 @@ public class DashboardController {
 	public void assignEndTime(@RequestBody CostDetails costDetails){
 		costDetailsService.addEndTime(costDetails);
 	}
+	
+	@RequestMapping(value="/endride")
+	public double calculateCost(@RequestBody CostDetails costDetails){
+		return costDetailsService.calculateCost(costDetails);
+	}
+	
 }
