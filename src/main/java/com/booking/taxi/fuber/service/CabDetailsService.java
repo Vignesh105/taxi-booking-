@@ -16,6 +16,12 @@ public class CabDetailsService {
 	
 	public List<CabDetails> fetchCabDetails() {
 		return cabDetailsRepo.findAll();
+	}	
+
+	public List<CabDetails> assignCabToUser(CabDetails cabDetails) {		
+		cabDetails.setAvailable(false);	
+		cabDetailsRepo.save(cabDetails);		
+		return cabDetailsRepo.findAll();
 	}
 
 }
